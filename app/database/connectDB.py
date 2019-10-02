@@ -1,33 +1,33 @@
 import psycopg2
 from flask import jsonify
-# import pymysql
+import pymysql
 
 
 class DatabaseConnectivity:
     # Using MySQL Database
-    # def connectToDatabase(self):
-    #     try:
-    #         self.conn = pymysql.connect(
-    #             "localhost", "root", "walter123@Andela!", "tickets")
-    #         print("Connected Successfully")
-    #         return self.conn
-
-    #     except pymysql.Error as e:
-    #         print(e)
-    #         return jsonify({'Message': 'Cannot connect to database'})
-
-    # Using MySQLdb from the server
     def connectToDatabase(self):
         try:
-            import MySQLdb
-            self.conn = MySQLdb.connect(
-                host='localhost', user='root', password='walter123@Andela!', db='tickets')
+            self.conn = pymysql.connect(
+                "localhost", "root", "walter123@Andela!", "tickets")
             print("Connected Successfully")
             return self.conn
 
-        except:
-            print('Cannot connect to database')
+        except pymysql.Error as e:
+            print(e)
             return jsonify({'Message': 'Cannot connect to database'})
+
+    # Using MySQLdb from the server
+    # def connectToDatabase(self):
+    #     try:
+    #         import MySQLdb
+    #         self.conn = MySQLdb.connect(
+    #             host='localhost', user='root', password='walter123@Andela!', db='tickets')
+    #         print("Connected Successfully")
+    #         return self.conn
+
+    #     except:
+    #         print('Cannot connect to database')
+    #         return jsonify({'Message': 'Cannot connect to database'})
 
     def create_tickets_table(self):
         sqlcommandforQuestions = (
