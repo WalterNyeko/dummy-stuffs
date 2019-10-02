@@ -117,7 +117,7 @@
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    {% if currentUser[29] ==0:%}
+                    {% if currentUser[29] !=0:%}
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-hacker-news"></i> <span>New</span>
@@ -365,7 +365,18 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">ATM Open Tasks</span>
-                                <span class="info-box-number">{{number_of_atm_open[0][0]}}</span>
+                                
+                                    {% if number_of_atm_open[0] and number_of_atm_open[0][0] > 0:%}
+                                    <span class="info-box-number">
+                                        {{number_of_atm_open[0][0]}}
+                                    </span>
+                                        
+                                    {%else:%}
+                                    <span class="info-box-number">
+                                        0
+                                    </span>
+                                        
+                                    {%endif%}
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -378,7 +389,17 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Telecom Open Task</span>
-                                <span class="info-box-number">{{number_of_tel_open[0][0]}}</span>
+                                    {% if number_of_tel_open[0] and number_of_tel_open[0][0] > 0:%}
+                                    <span class="info-box-number">
+                                        {{number_of_tel_open[0][0]}}
+                                    </span>
+                                        
+                                    {%else:%}
+                                    <span class="info-box-number">
+                                        0
+                                    </span>
+                                        
+                                    {%endif%} 
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -395,8 +416,19 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Airport Open Tasks</span>
-                                <span class="info-box-number">{{number_of_air_open[0][0]}}</span>
-                            </div>
+                                    {% if number_of_air_open[0] and number_of_air_open[0][0] > 0:%}
+                                    <span class="info-box-number">
+                                        {{number_of_air_open[0][0]}}
+                                    </span>
+                                        
+                                    {%else:%}
+                                    <span class="info-box-number">
+                                        0
+                                    </span>
+                                        
+                                    {%endif%}
+
+                                </div>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -408,7 +440,17 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Fleet Open Tasks</span>
-                                <span class="info-box-number">{{number_of_fle_open[0][0]}}</span>
+                                    {% if number_of_fle_open[0] and number_of_fle_open[0][0] > 0:%}
+                                    <span class="info-box-number">
+                                        {{number_of_fle_open[0][0]}}
+                                    </span>
+                                        
+                                    {%else:%}
+                                    <span class="info-box-number">
+                                        0
+                                    </span>
+                                        
+                                    {%endif%}
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -452,6 +494,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {%if allTheTickets %}
                                                 {% for eachTicket in allTheTickets %}
                                                 <tr>
                                                     <td></td>
@@ -505,6 +548,8 @@
                                                     {%endif%}
                                                 </tr>
                                                 {% endfor %}
+                                                {%else:%}
+                                                {%endif%}
                                             </tbody>
                                         </table>
                                         <!-- /.table -->

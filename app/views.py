@@ -43,8 +43,8 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'zubacx.alerts@gmail.com'
-app.config['MAIL_PASSWORD'] = 'password123alerts'
+app.config['MAIL_USERNAME'] = 'zubacxnotification@gmail.com'
+app.config['MAIL_PASSWORD'] = 'zubacx123!'
 
 mail = Mail(app)
 
@@ -75,6 +75,9 @@ def login():
         "SELECT user_name,user_password from users WHERE user_name=%s", [username])
 
     data = cur.fetchone()
+    if not data:
+        flash('Invalid Credentials', 'danger')
+        return render_template('index.html')
     usernameDB = data[0]
     if usernameDB == username:
         password = data[1]
@@ -98,7 +101,7 @@ def login():
 
         else:
             
-            flash('Invalid Password', 'danger')
+            flash('Invalid Credentials', 'danger')
             return render_template('index.html')
     else:
         flash('{} is not registered'.format(username), 'danger')
@@ -694,7 +697,7 @@ def edit_user(user_id):
     userAddress = request.form['user_address_edit']
     userPhone = request.form['user_phone_edit']
     userPassword = request.form['user_password_edit']
-    userClient = request.form['user_client_edit']
+    userClient = request.form.get('user_client_edit')
 
     user_role = request.form.get('client_account_edit')
     if user_role:
@@ -1272,7 +1275,7 @@ def upload_equipments():
 def send_email_alerts(subject,recipients,body):
     with app.app_context():
         try:
-            message = Message(subject=subject, sender=("Zubacx Call-Center", "zubacx.alerts@gmail.com"), recipients=recipients, body=body)
+            message = Message(subject=subject, sender=("Zubacx Call-Center", "zubacxnotification@gmail.com"), recipients=recipients, body=body)
             mail.send(message)
             print("Message sent successfully")
         except Exception as e:

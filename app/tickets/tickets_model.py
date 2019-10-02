@@ -75,7 +75,7 @@ class Tickets:
             self.theTickets = cur.fetchall()
             return self.theTickets
         except:
-            flash('Error retrieving tickets from database','danger')
+            return
 
 
     def view_all_my_tickets(self,current_user):
@@ -89,7 +89,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_closed_tickets(self):
         try:
@@ -109,7 +108,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
     
     def view_all_my_closed_tickets(self,current_user):
         try:
@@ -123,7 +121,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_open_tickets(self):
         try:
@@ -142,7 +139,7 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
+
     def view_all_my_open_tickets(self,current_user):
         try:
             conn = dbInstance.connectToDatabase()
@@ -155,7 +152,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_tickets_due_in_2_hours(self):
         try:
@@ -173,7 +169,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_my_tickets_due_in_2_hours(self,current_user):
         try:
@@ -186,7 +181,7 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
+
     def view_all_tickets_due_in_1_hour(self):
         try:
             conn = dbInstance.connectToDatabase()
@@ -202,7 +197,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
     
     def view_all_my_tickets_due_in_1_hour(self,current_user):
         try:
@@ -215,7 +209,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_overdue_tickets(self):
         try:
@@ -233,7 +226,7 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
+
     def view_all_low_priority_tickets(self):
         try:
             conn = dbInstance.connectToDatabase()
@@ -246,7 +239,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
     def view_all_my_overdue_tickets(self,current_user):
         try:
@@ -260,7 +252,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
             
     def view_all_my_low_priority_tickets(self,current_user):
         try:
@@ -274,7 +265,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving my tickets from database','danger')
 
 
     def edit_ticket(self,ticket_assigned_to,
@@ -559,7 +549,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving teh count of open tickets from database','danger')
 
     def number_of_open_air(self):
         try:
@@ -578,7 +567,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving teh count of open tickets from database','danger')
 
     def number_of_open_tel(self):
         try:
@@ -597,7 +585,6 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving teh count of open tickets from database','danger')
 
     def number_of_open_fle(self):
         try:
@@ -616,4 +603,3 @@ class Tickets:
             return self.theTickets
         except(Exception, psycopg2.DatabaseError) as e:
             print(e)
-            flash('Error retrieving teh count of open tickets from database','danger')

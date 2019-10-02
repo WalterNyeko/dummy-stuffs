@@ -390,56 +390,62 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for eachTicket in allTheTickets %}
-                        <tr>
-                          <td></td>
-                          <td class="mailbox-star">
-                            <i class="fa fa-ticket text-yellow"></i>
-                          </td>
-                          <td class="mailbox-name">{{ eachTicket[2] }}</td>
-                          <td class="mailbox-subject">
-                            <b>{{ eachTicket[3] }}</b> - {{ eachTicket[1] }}
-                          </td>
-                          {% if "Closed" in eachTicket[5]:%}
-                          <td>
-                            <span class="label label-success">{{
-                              eachTicket[5]
-                              }}</span>
-                          </td>
-                          {% elif eachTicket[5] =="Pending":%}
-                          <td>
-                            <span class="label label-primary">{{
-                              eachTicket[5]
-                              }}</span>
-                          </td>
-                          {% elif eachTicket[5] =="Open":%}
-                          <td>
-                            <span class="label label-warning">{{
-                              eachTicket[5]
-                              }}</span>
-                          </td>
-                          {% else:%}
-                          <td>
-                            <span class="label label-danger">{{
-                              eachTicket[5]
-                              }}</span>
-                          </td>
-                          {% endif%}
-                          <td class="mailbox-date">{{ eachTicket[4] }}</td>
-                          <td>
-                            <span class="mailbox-name">{{
-                              eachTicket[7]
-                              }}</span>
-                          </td>
-                          {% if currentUser[14] ==1:%}
-                          <td>
-                            <a href="/edit_the_ticket/{{eachTicket[0]}}" class="btn btn-primary btn-sm">
-                              View Details
-                            </a>
-                          </td>
-                          {% else:%} {% endif%}
-                        </tr>
-                        {% endfor %}
+                          {%if allTheTickets %}
+                          {% for eachTicket in allTheTickets %}
+                          <tr>
+                              <td></td>
+                              <td class="mailbox-star">
+                                  <i class="fa fa-ticket text-yellow"></i>
+                              </td>
+                              <td class="mailbox-name">{{ eachTicket[2] }}</td>
+                              <td class="mailbox-subject">
+                                  <b>{{ eachTicket[3] }}</b> - {{ eachTicket[1] }}
+                              </td>
+                              {% if "Closed" in eachTicket[5]:%}
+                              <td>
+                                  <span class="label label-success">{{
+                                      eachTicket[5]
+                                      }}</span>
+                              </td>
+                              {% elif eachTicket[5] =="Pending":%}
+                              <td>
+                                  <span class="label label-primary">{{
+                                      eachTicket[5]
+                                      }}</span>
+                              </td>
+                              {% elif eachTicket[5] =="Open":%}
+                              <td>
+                                  <span class="label label-warning">{{
+                                      eachTicket[5]
+                                      }}</span>
+                              </td>
+                              {% else:%}
+                              <td>
+                                  <span class="label label-danger">{{
+                                      eachTicket[5]
+                                      }}</span>
+                              </td>
+                              {% endif%}
+                              <td class="mailbox-date">{{ eachTicket[4] }}</td>
+                              <td>
+                                  <span class="mailbox-name">{{
+                                      eachTicket[7]
+                                      }}</span>
+                              </td>
+                              {% if currentUser[29] ==0:%}
+                              {% if currentUser[14] ==1:%}
+                              <td>
+                                  <a href="/edit_the_ticket/{{eachTicket[0]}}" class="btn btn-primary btn-sm">
+                                      View Details
+                                  </a>
+                              </td>
+                              {% else:%} {% endif%}
+                              {%else:%}
+                              {%endif%}
+                          </tr>
+                          {% endfor %}
+                          {%else:%}
+                          {%endif%}
                       </tbody>
                     </table>
                     <!-- /.table -->

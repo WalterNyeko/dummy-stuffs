@@ -114,7 +114,7 @@ class Users:
             user_can_view_his_tickets=%s,user_can_edit_his_tickets=%s,user_can_view_his_tasks=%s,user_can_view_all_tasks=%s,
             user_can_view_his_reports=%s,user_can_view_all_reports=%s,user_can_add_delete_edit_client_info=%s,
             user_can_add_delete_edit_engineer_info=%s,user_can_add_delete_edit_equipment_info=%s,user_can_add_delete_edit_workorder_info=%s,
-            user_can_receive_email_alerts=%s user_roles=%s, user_client=%s WHERE user_id=%s
+            user_can_receive_email_alerts=%s, user_roles=%s, user_client=%s WHERE user_id=%s
             """
             cur.execute(sql, [user_first_name, user_last_name, user_email, user_phone, user_address, user_name, user_password,
                               user_can_add_user, user_can_delete_user, user_can_edit_user, user_can_edit_his_info,
@@ -137,7 +137,7 @@ class Users:
             self.theUser = cur.fetchone()
             return self.theUser
         except:
-            flash('Error retrieving user from database', 'danger')
+            return
 
     def checkUserRights(self, current_user):
         try:
@@ -148,7 +148,7 @@ class Users:
             self.theUser = cur.fetchone()
             return self.theUser
         except:
-            flash('Error retrieving the user from database', 'danger')
+            return
 
     def checkUserAccount(self, current_user):
         try:
@@ -160,7 +160,7 @@ class Users:
             self.theUser = cur.fetchone()
             return self.theUser
         except:
-            flash('Error retrieving the user from database', 'danger')
+            return
 
     def edit_user_profile(self, user_first_name, user_last_name, user_email, user_name, user_password):
         try:
