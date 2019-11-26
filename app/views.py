@@ -941,7 +941,7 @@ def delete_client(client_id):
     custInstance.delete_a_client(client_id)
     theReturnedClients = custInstance.get_all_clients()
     if g.username:
-        return render_template('view_clients.html', allTheClients=theReturnedClients,currentUser=LoggedInUser1)
+        return render_template('our_clients.html', allTheClients=theReturnedClients,currentUser=LoggedInUser1)
     return redirect(url_for('index'))
 
 @app.route('/the_client/<int:client_id>', methods=['GET'])

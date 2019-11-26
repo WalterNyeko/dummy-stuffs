@@ -1,514 +1,597 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Zubacx | All My Tickets</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='vendor/font-awesome/css/font-awesome.min.css') }}" />
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='vendor/Ionicons/css/ionicons.min.css') }}" />
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='vendor/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" />
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='dist/css/AdminLTE.min.css') }}" />
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Zubacx | All My Tickets</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.7 -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='vendor/bootstrap/dist/css/bootstrap.min.css') }}"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='vendor/font-awesome/css/font-awesome.min.css') }}"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='vendor/Ionicons/css/ionicons.min.css') }}"
+    />
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='vendor/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='dist/css/AdminLTE.min.css') }}"
+    />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='dist/css/skins/_all-skins.min.css') }}" />
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='dist/plugins/iCheck/flat/blue.css') }}" />
-  <!--Numbering CSS  -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='numbering/numbering.css') }}" />
-  <!-- Custom CSS -->
-  <style>
-    #example1_filter {
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='dist/css/skins/_all-skins.min.css') }}"
+    />
+    <!-- iCheck -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='dist/plugins/iCheck/flat/blue.css') }}"
+    />
+    <!--Numbering CSS  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='numbering/numbering.css') }}"
+    />
+    <!-- Custom CSS -->
+    <style>
+      #example1_filter {
         display: none;
       }
     </style>
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-</head>
+    <!-- Google Font -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+    />
+  </head>
 
-<body class="hold-transition fixed skin-blue sidebar-mini">
-  <div class="wrapper">
-    <header class="main-header">
-      <!-- Logo -->
-      <a href="/dashboard" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>Zub</b>U</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">
-          <img src="{{ url_for('static',filename='dist/img/ZubaCx_Logo.png') }}" height="40px" alt="" />
-        </span>
-      </a>
-
-      <!-- Header Navbar: style can be found in header.less -->
-      <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
+  <body class="hold-transition fixed skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="/dashboard" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>Zub</b>U</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg">
+            <img
+              src="{{ url_for('static',filename='dist/img/ZubaCx_Logo.png') }}"
+              height="40px"
+              alt=""
+            />
+          </span>
         </a>
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!-- User Account: style can be found in dropdown.less -->
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ url_for('static',filename='dist/img/NCR.png') }}" class="user-image" alt="User Image" />
-                <span class="hidden-xs">{{ currentUser[3] }}</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- User image -->
-                <li class="user-header">
-                  <img src="{{ url_for('static',filename='dist/img/NCR.png') }}" class="img-circle" alt="User Image" />
 
-                  <p>
-                    {{ currentUser[3] }} - ({{ currentUser[1] }}
-                    {{ currentUser[2] }})
-                  </p>
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="/profile" class="btn bg-purple btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="/login" class="btn bg-maroon btn-flat">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a
+            href="#"
+            class="sidebar-toggle"
+            data-toggle="push-menu"
+            role="button"
+          >
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img
+                    src="{{ url_for('static',filename='dist/img/NCR.png') }}"
+                    class="user-image"
+                    alt="User Image"
+                  />
+                  <span class="hidden-xs">{{ currentUser[3] }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img
+                      src="{{ url_for('static',filename='dist/img/NCR.png') }}"
+                      class="img-circle"
+                      alt="User Image"
+                    />
+
+                    <p>
+                      {{ currentUser[3] }} - ({{ currentUser[1] }} {{
+                      currentUser[2] }})
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="/profile" class="btn bg-purple btn-flat"
+                        >Profile</a
+                      >
+                    </div>
+                    <div class="pull-right">
+                      <a href="/login" class="btn bg-maroon btn-flat"
+                        >Sign out</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
           <!-- Sidebar user panel -->
           <div class="user-panel">
-              <div class="pull-left image">
-                  <img src="{{ url_for('static',filename='dist/img/NCR.png') }}" class="img-circle" alt="User Image" />
-              </div>
-              <div class="pull-left info">
-                  <p>{{ currentUser[3] }}</p>
-                  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-              </div>
+            <div class="pull-left image">
+              <img
+                src="{{ url_for('static',filename='dist/img/NCR.png') }}"
+                class="img-circle"
+                alt="User Image"
+              />
+            </div>
+            <div class="pull-left info">
+              <p>{{ currentUser[3] }}</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
           </div>
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
-              <li class="active">
-                  <a href="{{ url_for('dashboard') }}">
-                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                  </a>
-              </li>
-              {% if currentUser[29] ==0:%}
-              <li class="treeview">
-                  <a href="#">
-                      <i class="fa fa-hacker-news"></i> <span>New</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                          <small class="label pull-right bg-green">new</small>
-                      </span>
-                  </a>
-                  <ul class="treeview-menu">
-                      {% if currentUser[9] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_users') }}"><i class="fa fa-circle-o"></i> Add New User</a>
-                      </li>
-                      {%endif%} {% if currentUser[13] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_ticket') }}"><i class="fa fa-circle-o"></i> Add New Ticket</a>
-                      </li>
-                      {%endif%} {% if currentUser[23] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_customer') }}"><i class="fa fa-circle-o"></i> Add New Customer</a>
-                      </li>
-                      {%endif%} {% if currentUser[24] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_engineer') }}"><i class="fa fa-circle-o"></i> Add New Engineer</a>
-                      </li>
-                      {%endif%} {% if currentUser[25] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_equipment') }}"><i class="fa fa-circle-o"></i> Add New
-                              Equipment</a>
-                      </li>
-                      {%endif%} {% if currentUser[26] ==0:%} {% else:%}
-                      <li>
-                          <a href="{{ url_for('new_workorder') }}"><i class="fa fa-circle-o"></i> Add New Work
-                              Order</a>
-                      </li>
-                      {%endif%}
-                  </ul>
-              </li>
-              {% else:%}
-              {%endif%}
-              {% if currentUser[29] == 0:%}
-              <li class="treeview">
-                  <a href="#">
-                      <i class="fa fa-street-view"></i> <span>Views</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                          <small class="label pull-right bg-primary">views</small>
-                      </span>
-                  </a>
-                  <ul class="treeview-menu">
-                      {% if currentUser[16] ==1:%}
-                      <li>
-                          <a href="/view_all_tickets"><i class="fa fa-circle-o"></i> All Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/open_and_overdue_tickets"><i class="fa fa-circle-o"></i> Open Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/closed_and_overdue_tickets"><i class="fa fa-circle-o"></i> Closed Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/low_priority_and_overdue_tickets"><i class="fa fa-circle-o"></i> Overdue
-                              Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/all_my_open_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_open_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Open Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_closed_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Closed
-                              Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_low_priority_and_overdue_tickets"><i class="fa fa-circle-o"></i> My
-                              Overdue Tickets</a>
-                      </li>
-                      {% else:%} {% if currentUser[13] ==1:%}
-                      <li>
-                          <a href="/all_my_open_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_open_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Open Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_closed_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Closed
-                              Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/my_low_priority_and_overdue_tickets"><i class="fa fa-circle-o"></i> My
-                              Overdue Tickets</a>
-                      </li>
-                      {% else:%} {%endif%} {%endif%}
-                  </ul>
-              </li>
-              {%else:%}
-              <li class="treeview">
-                  <a href="#">
-                      <i class="fa fa-street-view"></i> <span>Views</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                          <small class="label pull-right bg-primary">views</small>
-                      </span>
-                  </a>
-                  <ul class="treeview-menu">
-                      <li>
-                          <a href="/view_all_tickets"><i class="fa fa-circle-o"></i> My Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/open_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Open Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/closed_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Closed Tickets</a>
-                      </li>
-                      <li>
-                          <a href="/low_priority_and_overdue_tickets"><i class="fa fa-circle-o"></i> My Overdue
-                              Tickets</a>
-                      </li>
-                  </ul>
-              </li>
-              {%endif%}
-              <li class="">
-                  <a href="{{ url_for('view_all_tickets') }}">
-                      <i class="fa fa-ticket"></i> <span>Tickets</span>
-                  </a>
-              </li>
-              {% if currentUser[23] ==0:%}
-              {% if currentUser[29] ==0:%}
-              <li class="">
-                  <a href="/robot">
-                      <i class="fa fa-user-o"></i> <span>Customers</span>
-                  </a>
-              </li>
-              {% else:%}
-              {%endif%}
-
-              {% else:%}
-              {% if currentUser[29] ==0:%}
-              <li class="">
-                  <a href="/all_clients">
-                      <i class="fa fa-user-o"></i> <span>Customers</span>
-                  </a>
-              </li>
-              <li class="">
-                  <a href="/all_engineers">
-                      <i class="fa fa-user-o"></i> <span>Engineers</span>
-                  </a>
-              </li>
-              <li class="">
-                  <a href="/all_equipments">
-                      <i class="fa fa-ticket"></i> <span>Equipments</span>
-                  </a>
-              </li>
-              <li class="">
-                  <a href="/all_users">
-                      <i class="fa fa-user-o"></i> <span>System Users</span>
-                  </a>
-              </li>
-              {% else:%}
-              {%endif%}
-              {% endif%}
-              <li class="">
-                  <a href="/tasks">
-                      <i class="fa fa-tasks"></i> <span>Tasks</span>
-                  </a>
-              </li>
-              {% if currentUser[29] == 0:%}
-              <li class="">
-                  <a href="/reports">
-                      <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
-                  </a>
-              </li>
-              {%else:%}
-              {%endif%}
-
-
-              {% if currentUser[13] ==0:%}
-              {% if currentUser[29] ==0:%}
-              <li class="">
-                  <a href="/robot">
-                      <i class="fa fa-ticket"></i> <span>Open Tickets</span>
-                  </a>
-              </li>
-              {% else:%}
-              {%endif%}
-              {% else:%}
-              {% if currentUser[29] ==0:%}
-              <li class="">
-                  <a href="{{ url_for('new_ticket') }}">
-                      <i class="fa fa-ticket"></i> <span>Open Tickets</span>
-                  </a>
-              </li>
-              {% else:%}
-              {%endif%}
-              {% endif%}
-              <li>
-                  <a href="#">
-                      <i class="fa fa-calendar"></i> <span>Calendar</span>
-                      <span class="pull-right-container">
-                          <small class="label pull-right bg-red">3</small>
-                          <small class="label pull-right bg-blue">17</small>
-                      </span>
-                  </a>
-              </li>
-              <li style="height:80px">
-                  <a>
-                      <span class="pull-right-container">
-                          <small style="width:60px" class="label pull-right bg-yellow">
-                              <h1 id="s">12</h1>
-                          </small>
-                          <small style="width:60px" class="label pull-right bg-green">
-                              <h1 id="m">34</h1>
-                          </small>
-                          <small style="width:60px" class="label pull-right bg-red">
-                              <h1 id="h">23</h1>
-                          </small>
-                      </span>
-                  </a>
-              </li>
+            <li class="active">
+              <a href="{{ url_for('dashboard') }}">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-hacker-news"></i> <span>New</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                  <small class="label pull-right bg-green">new</small>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                {% if currentUser[9] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_users') }}"
+                    ><i class="fa fa-circle-o"></i> Add New User</a
+                  >
+                </li>
+                {%endif%} {% if currentUser[13] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_ticket') }}"
+                    ><i class="fa fa-circle-o"></i> Add New Ticket</a
+                  >
+                </li>
+                {%endif%} {% if currentUser[23] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_customer') }}"
+                    ><i class="fa fa-circle-o"></i> Add New Customer</a
+                  >
+                </li>
+                {%endif%} {% if currentUser[24] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_engineer') }}"
+                    ><i class="fa fa-circle-o"></i> Add New Engineer</a
+                  >
+                </li>
+                {%endif%} {% if currentUser[25] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_equipment') }}"
+                    ><i class="fa fa-circle-o"></i> Add New Equipment</a
+                  >
+                </li>
+                {%endif%} {% if currentUser[26] ==0:%} {% else:%}
+                <li>
+                  <a href="{{ url_for('new_workorder') }}"
+                    ><i class="fa fa-circle-o"></i> Add New Work Order</a
+                  >
+                </li>
+                {%endif%}
+              </ul>
+            </li>
+            {% if currentUser[29] == 0:%}
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-street-view"></i> <span>Views</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                  <small class="label pull-right bg-primary">views</small>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                {% if currentUser[16] ==1:%}
+                <li>
+                  <a href="/view_all_tickets"
+                    ><i class="fa fa-circle-o"></i> All Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> Open Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/closed_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> Closed Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/low_priority_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> Overdue Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/all_my_open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Open Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_closed_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Closed Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_low_priority_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Overdue Tickets</a
+                  >
+                </li>
+                {% else:%} {% if currentUser[13] ==1:%}
+                <li>
+                  <a href="/all_my_open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Open Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_closed_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Closed Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/my_low_priority_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Overdue Tickets</a
+                  >
+                </li>
+                {% else:%} {%endif%} {%endif%}
+              </ul>
+            </li>
+            {%else:%}
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-street-view"></i> <span>Views</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                  <small class="label pull-right bg-primary">views</small>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/view_all_tickets"
+                    ><i class="fa fa-circle-o"></i> My Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/open_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Open Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/closed_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Closed Tickets</a
+                  >
+                </li>
+                <li>
+                  <a href="/low_priority_and_overdue_tickets"
+                    ><i class="fa fa-circle-o"></i> My Overdue Tickets</a
+                  >
+                </li>
+              </ul>
+            </li>
+            {%endif%}
+            <li class="">
+              <a href="{{ url_for('view_all_tickets') }}">
+                <i class="fa fa-ticket"></i> <span>Tickets</span>
+              </a>
+            </li>
+            {% if currentUser[23] ==0:%} {% if currentUser[29] ==0:%}
+            <li class="">
+              <a href="/robot">
+                <i class="fa fa-user-o"></i> <span>Customers</span>
+              </a>
+            </li>
+            {% else:%} {%endif%} {% else:%} {% if currentUser[29] ==0:%}
+            <li class="">
+              <a href="/all_clients">
+                <i class="fa fa-user-o"></i> <span>Customers</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="/all_engineers">
+                <i class="fa fa-user-o"></i> <span>Engineers</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="/all_equipments">
+                <i class="fa fa-ticket"></i> <span>Equipments</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="/all_users">
+                <i class="fa fa-user-o"></i> <span>System Users</span>
+              </a>
+            </li>
+            {% else:%} {%endif%} {% endif%}
+            <li class="">
+              <a href="/tasks">
+                <i class="fa fa-tasks"></i> <span>Tasks</span>
+              </a>
+            </li>
+            {% if currentUser[29] == 0:%}
+            <li class="">
+              <a href="/reports">
+                <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
+              </a>
+            </li>
+            {%else:%} {%endif%} {% if currentUser[13] ==0:%} {% if
+            currentUser[29] ==0:%}
+            <li class="">
+              <a href="/robot">
+                <i class="fa fa-ticket"></i> <span>Open Tickets</span>
+              </a>
+            </li>
+            {% else:%} {%endif%} {% else:%} {% if currentUser[29] ==0:%}
+            <li class="">
+              <a href="{{ url_for('new_ticket') }}">
+                <i class="fa fa-ticket"></i> <span>Open Tickets</span>
+              </a>
+            </li>
+            {% else:%} {%endif%} {% endif%}
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>Calendar</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-red">3</small>
+                  <small class="label pull-right bg-blue">17</small>
+                </span>
+              </a>
+            </li>
+            <li style="height:80px">
+              <a>
+                <span class="pull-right-container">
+                  <small style="width:60px" class="label pull-right bg-yellow">
+                    <h1 id="s">12</h1>
+                  </small>
+                  <small style="width:60px" class="label pull-right bg-green">
+                    <h1 id="m">34</h1>
+                  </small>
+                  <small style="width:60px" class="label pull-right bg-red">
+                    <h1 id="h">23</h1>
+                  </small>
+                </span>
+              </a>
+            </li>
           </ul>
-      </section>
-      <!-- /.sidebar -->
-  </aside>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1><i class="fa fa-ticket"></i> All My Tickets</h1>
-        <ol class="breadcrumb">
-          <li>
-            <a href="#"><i class="fa fa-dashboard"></i> Home</a>
-          </li>
-          <li class="active">All My Tickets</li>
-        </ol>
-      </section>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1><i class="fa fa-ticket"></i> All My Tickets</h1>
+          <ol class="breadcrumb">
+            <li>
+              <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+            </li>
+            <li class="active">All My Tickets</li>
+          </ol>
+        </section>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-md-12">
-            <div class="box box-primary">
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">All My Tickets</h3>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+              <div class="box box-primary">
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">All My Tickets</h3>
 
-                  <div class="box-tools pull-right">
-                    <div class="has-feedback">
-                      <input id="myInputTextFieldForSearch" type="text" class="form-control input-sm" placeholder="Search Tickets" />
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    <div class="box-tools pull-right">
+                      <div class="has-feedback">
+                        <input
+                          id="myInputTextFieldForSearch"
+                          type="text"
+                          class="form-control input-sm"
+                          placeholder="Search Tickets"
+                        />
+                        <span
+                          class="glyphicon glyphicon-search form-control-feedback"
+                        ></span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="box-body padding">
-                  <div class="table-responsive mailbox-messages">
-                    {% include '_messages.html'%}
-                    <table id="example1" class="table table-hover table-striped css-serial">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th></th>
-                          <th>Engineer's Name</th>
-                          <th>Ticket-Reason for Ticket</th>
-                          <th>Ticket Status</th>
-                          <th>Ticket Timestamp</th>
-                          <th>Ticket Type</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        
-                          {%if allTheTickets %}
-                          {% for eachTicket in allTheTickets %}
+                  <div class="box-body padding">
+                    <div class="table-responsive mailbox-messages">
+                      {% include '_messages.html'%}
+                      <table
+                        id="example1"
+                        class="table table-hover table-striped css-serial"
+                      >
+                        <thead>
                           <tr>
-                              <td></td>
-                              <td class="mailbox-star">
-                                  <i class="fa fa-ticket text-yellow"></i>
-                              </td>
-                              <td class="mailbox-name">{{ eachTicket[2] }}</td>
-                              <td class="mailbox-subject">
-                                  <b>{{ eachTicket[3] }}</b> - {{ eachTicket[1] }}
-                              </td>
-                              {% if "Closed" in eachTicket[5]:%}
-                              <td>
-                                  <span class="label label-success">{{
-                                      eachTicket[5]
-                                      }}</span>
-                              </td>
-                              {% elif eachTicket[5] =="Pending":%}
-                              <td>
-                                  <span class="label label-primary">{{
-                                      eachTicket[5]
-                                      }}</span>
-                              </td>
-                              {% elif eachTicket[5] =="Open":%}
-                              <td>
-                                  <span class="label label-warning">{{
-                                      eachTicket[5]
-                                      }}</span>
-                              </td>
-                              {% else:%}
-                              <td>
-                                  <span class="label label-danger">{{
-                                      eachTicket[5]
-                                      }}</span>
-                              </td>
-                              {% endif%}
-                              <td class="mailbox-date">{{ eachTicket[4] }}</td>
-                              <td>
-                                  <span class="mailbox-name">{{
-                                      eachTicket[7]
-                                      }}</span>
-                              </td>
-                              {% if currentUser[29] ==0:%}
-                              {% if currentUser[14] ==1:%}
-                              <td>
-                                  <a href="/edit_the_ticket/{{eachTicket[0]}}" class="btn btn-primary btn-sm">
-                                      View Details
-                                  </a>
-                              </td>
-                              {% else:%} {% endif%}
-                              {%else:%}
-                              {%endif%}
+                            <th>#</th>
+                            <th></th>
+                            <th>Engineer's Name</th>
+                            <th>Ticket-Reason for Ticket</th>
+                            <th>Ticket Status</th>
+                            <th>Ticket Timestamp</th>
+                            <th>Ticket Type</th>
+                            <th></th>
                           </tr>
-                          {% endfor %}
-                          {%else:%}
-                          {%endif%}
-                      </tbody>
-                    </table>
-                    <!-- /.table -->
+                        </thead>
+                        <tbody>
+                          {%if allTheTickets %} {% for eachTicket in
+                          allTheTickets %}
+                          <tr>
+                            <td></td>
+                            <td class="mailbox-star">
+                              <i class="fa fa-ticket text-yellow"></i>
+                            </td>
+                            <td class="mailbox-name">{{ eachTicket[2] }}</td>
+                            <td class="mailbox-subject">
+                              <b>{{ eachTicket[3] }}</b> - {{ eachTicket[1] }}
+                            </td>
+                            {% if "Closed" in eachTicket[5]:%}
+                            <td>
+                              <span class="label label-success"
+                                >{{ eachTicket[5] }}</span
+                              >
+                            </td>
+                            {% elif eachTicket[5] =="Pending":%}
+                            <td>
+                              <span class="label label-primary"
+                                >{{ eachTicket[5] }}</span
+                              >
+                            </td>
+                            {% elif eachTicket[5] =="Open":%}
+                            <td>
+                              <span class="label label-warning"
+                                >{{ eachTicket[5] }}</span
+                              >
+                            </td>
+                            {% else:%}
+                            <td>
+                              <span class="label label-danger"
+                                >{{ eachTicket[5] }}</span
+                              >
+                            </td>
+                            {% endif%}
+                            <td class="mailbox-date">{{ eachTicket[4] }}</td>
+                            <td>
+                              <span class="mailbox-name"
+                                >{{ eachTicket[7] }}</span
+                              >
+                            </td>
+                            {% if currentUser[29] ==0:%} {% if currentUser[14]
+                            ==1:%}
+                            <td>
+                              <a
+                                href="/edit_the_ticket/{{eachTicket[0]}}"
+                                class="btn btn-primary btn-sm"
+                              >
+                                View Details
+                              </a>
+                            </td>
+                            {% else:%} {% endif%} {%else:%} {%endif%}
+                          </tr>
+                          {% endfor %} {%else:%} {%endif%}
+                        </tbody>
+                      </table>
+                      <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
                   </div>
-                  <!-- /.mail-box-messages -->
                 </div>
+                <!-- /.box-body -->
+                <div class="box-footer no-padding"></div>
               </div>
-              <!-- /.box-body -->
-              <div class="box-footer no-padding"></div>
+              <!-- /. box -->
             </div>
-            <!-- /. box -->
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0-
-        <label for="" id="developers" class="text-info">
-          Developed By: SoftEarth Technologies, Inc</label>
+          <!-- /.row -->
+        </section>
+        <!-- /.content -->
       </div>
-      <strong>Copyright &copy; 2018. Zubacx</strong> All rights reserved.
-      <img src="{{ url_for('static',filename='dist/img/ZubaCx_Logo.png') }}" height="40px" alt="Zubacx Logo" />
-    </footer>
-  </div>
-  <!-- ./wrapper -->
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0-
+          <label for="" id="developers" class="text-info">
+            Developed By: SoftEarth Technologies, Inc</label
+          >
+        </div>
+        <strong>Copyright &copy; 2018. Zubacx</strong> All rights reserved.
+        <img
+          src="{{ url_for('static',filename='dist/img/ZubaCx_Logo.png') }}"
+          height="40px"
+          alt="Zubacx Logo"
+        />
+      </footer>
+    </div>
+    <!-- ./wrapper -->
 
-  <!-- jQuery 3 -->
-  <script src="{{ url_for('static',filename='vendor/jquery/dist/jquery.min.js') }}"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="{{ url_for('static',filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-  <!-- DataTables -->
-  <script src="{{ url_for('static',filename='vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-  <!-- Slimscroll -->
-  <script src="{{ url_for('static',filename='vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-  <!-- FastClick -->
-  <script src="{{ url_for('static',filename='vendor/fastclick/lib/fastclick.js') }}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ url_for('static',filename='dist/js/adminlte.min.js') }}"></script>
-  <!-- iCheck -->
-  <script src="{{ url_for('static',filename='plugins/iCheck/icheck.min.js') }}"></script>
-  <!-- Page Script -->
-  <script src="{{ url_for('static',filename='time/time.js') }}"></script>
-  <script>
-    $(function () {
-      let oTable = $("#example1").DataTable({
-        paging: true,
-        lengthChange: false,
-        searching: true,
-        ordering: false,
-        info: true,
-        autoWidth: true
+    <!-- jQuery 3 -->
+    <script src="{{ url_for('static',filename='vendor/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ url_for('static',filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ url_for('static',filename='vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <!-- Slimscroll -->
+    <script src="{{ url_for('static',filename='vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ url_for('static',filename='vendor/fastclick/lib/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ url_for('static',filename='dist/js/adminlte.min.js') }}"></script>
+    <!-- iCheck -->
+    <script src="{{ url_for('static',filename='plugins/iCheck/icheck.min.js') }}"></script>
+    <!-- Page Script -->
+    <script src="{{ url_for('static',filename='time/time.js') }}"></script>
+    <script>
+      $(function() {
+        let oTable = $("#example1").DataTable({
+          paging: true,
+          lengthChange: false,
+          searching: true,
+          ordering: false,
+          info: true,
+          autoWidth: true
+        });
+
+        $("#myInputTextFieldForSearch").keyup(function() {
+          oTable.search($(this).val()).draw();
+        });
       });
-
-      $("#myInputTextFieldForSearch").keyup(function () {
-        oTable.search($(this).val()).draw();
-      });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
